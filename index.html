@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Business Card</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #f0f2f5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    max-width: 400px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .card-header {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    padding: 40px 30px 60px;
+    text-align: center;
+    position: relative;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #e0e7ff;
+    border: 4px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 36px;
+    color: #2563eb;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .name-ja {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.08em;
+  }
+
+  .name-en {
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .title {
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    margin-top: 10px;
+  }
+
+  .company {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+  }
+
+  .card-body {
+    padding: 24px 24px 16px;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #f1f5f9;
+    text-decoration: none;
+    color: #334155;
+    transition: background 0.2s;
+    border-radius: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin: 0 -8px;
+  }
+
+  .info-item:last-child { border-bottom: none; }
+
+  .info-item:hover {
+    background: #f8fafc;
+  }
+
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 14px;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+
+  .info-icon.phone { background: #dcfce7; }
+  .info-icon.email { background: #dbeafe; }
+  .info-icon.address { background: #fef3c7; }
+  .info-icon.web { background: #ede9fe; }
+
+  .info-label {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .info-value {
+    font-size: 14px;
+    color: #1e293b;
+    margin-top: 2px;
+    word-break: break-all;
+  }
+
+  .card-footer {
+    padding: 8px 24px 28px;
+  }
+
+  .save-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px;
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.03em;
+  }
+
+  .save-btn:hover {
+    background: #1d4ed8;
+  }
+
+  .save-btn:active {
+    transform: scale(0.98);
+  }
+
+  .save-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .share-section {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .share-btn {
+    flex: 1;
+    padding: 10px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    background: transparent;
+    color: #64748b;
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .share-btn:hover {
+    border-color: #2563eb;
+    color: #2563eb;
+  }
+
+  .powered {
+    text-align: center;
+    padding: 16px;
+    font-size: 11px;
+    color: #cbd5e1;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">
+    <div class="avatar">T</div>
+    <div class="name-ja">遠田 耕平</div>
+    <div class="name-en">Kohei Toda</div>
+    <div class="title">代表</div>
+    <div class="company">Today inc</div>
+  </div>
+
+  <div class="card-body">
+    <a href="tel:090-0000-0000" class="info-item">
+      <div class="info-icon phone">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div>
+        <div class="info-label">Phone</div>
+        <div class="info-value">090-0000-0000</div>
+      </div>
+    </a>
+
+    <a href="mailto:info@taplink.jp" class="info-item">
+      <div class="info-icon email">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </div>
+      <div>
+        <div class="info-label">Email</div>
+        <div class="info-value">info@taplink.jp</div>
+      </div>
+    </a>
+
+    <div class="info-item">
+      <div class="info-icon address">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div>
+        <div class="info-label">Address</div>
+        <div class="info-value">埼玉県さいたま市大宮区宮町3-11-4<br>オリエンタル大宮ビル3階</div>
+      </div>
+    </div>
+
+    <a href="#" class="info-item" onclick="return false;">
+      <div class="info-icon web">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <div>
+        <div class="info-label">Website</div>
+        <div class="info-value">taplink.jp</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="card-footer">
+    <button class="save-btn" onclick="downloadVCard()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      連絡先を保存
+    </button>
+    <div class="share-section">
+      <button class="share-btn" onclick="shareCard()">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        共有
+      </button>
+      <button class="share-btn" onclick="copyLink()">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        リンクコピー
+      </button>
+    </div>
+  </div>
+
+  <div class="powered">Powered by TapLink</div>
+</div>
+
+<script>
+function downloadVCard() {
+  const vcard = [
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    'N:遠田;耕平;;;',
+    'FN:遠田 耕平',
+    'ORG:Today inc',
+    'TITLE:代表',
+    'TEL;TYPE=CELL:090-0000-0000',
+    'EMAIL:info@taplink.jp',
+    'ADR;TYPE=WORK:;;宮町3-11-4 オリエンタル大宮ビル3階;さいたま市大宮区;;330-0854;日本',
+    'URL:https://taplink.jp',
+    'END:VCARD'
+  ].join('\r\n');
+
+  const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'toda_kohei.vcf';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function shareCard() {
+  if (navigator.share) {
+    navigator.share({
+      title: '遠田 耕平 - デジタル名刺',
+      text: '遠田 耕平の連絡先情報です。',
+      url: window.location.href
+    });
+  } else {
+    copyLink();
+  }
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(function() {
+    var btn = event.target.closest('.share-btn');
+    var original = btn.innerHTML;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> コピー済み';
+    btn.style.borderColor = '#16a34a';
+    btn.style.color = '#16a34a';
+    setTimeout(function() {
+      btn.innerHTML = original;
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
